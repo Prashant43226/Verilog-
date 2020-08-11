@@ -73,19 +73,19 @@ begin
 	 //push into fifo if fifo is not full even once
     if(push & (!fifo_full) &(!reset))
     begin
-        data_arr[write_ptr]=data_in;
-        write_ptr=write_ptr+2'b01;
-        fifo_counter=fifo_counter+2'b01;
-		  read_ptr=read_ptr;
+	data_arr[write_ptr]<=data_in;
+        write_ptr<=write_ptr+2'b01;
+        fifo_counter<=fifo_counter+2'b01;
+        read_ptr<=read_ptr;
 	 end
     
 	 //push into fifo after it has been filled atleast once
 	 else if(push & (fifo_full))
 	 begin
-	 data_arr[write_ptr]=data_in;
-	 write_ptr=write_ptr+2'b01;
-	 fifo_counter=fifo_counter;
-	 read_ptr=read_ptr+2'b01;
+         data_arr[write_ptr]<=data_in;
+	 write_ptr<=write_ptr+2'b01;
+	 fifo_counter<=fifo_counter;
+	 read_ptr<=read_ptr+2'b01;
 	 end
 	 
 	 //pop from fifo if it has not been full even once
